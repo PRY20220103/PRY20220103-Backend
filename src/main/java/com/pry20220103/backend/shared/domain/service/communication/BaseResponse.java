@@ -3,6 +3,7 @@ package com.pry20220103.backend.shared.domain.service.communication;
 import lombok.Getter;
 import org.apache.logging.log4j.util.Strings;
 
+
 @Getter
 public abstract class BaseResponse<T> {
     private boolean success;

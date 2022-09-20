@@ -1,7 +1,9 @@
 package com.pry20220103.backend;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @EnableJpaAuditing
@@ -11,5 +13,4 @@ public class Pry20220103BackendApplication {
     public static void main(String[] args) {
         SpringApplication.run(Pry20220103BackendApplication.class, args);
     }
-
 }
