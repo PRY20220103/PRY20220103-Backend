@@ -10,7 +10,6 @@ import java.util.Optional;
 
 @Repository
 public interface UsageLogRepository extends JpaRepository<UsageLog, Long> {
-    UsageLog findByIdAndModelId(Long usageLogId, Long modelId);
-    Optional<UsageLog> findByModelId(Long modelId);
+    Optional<UsageLog> findByIdAndModelId(Long usageLogId, Long modelId);
     Page<UsageLog> findAllByModelId(Long modelId, Pageable pageable);
 }

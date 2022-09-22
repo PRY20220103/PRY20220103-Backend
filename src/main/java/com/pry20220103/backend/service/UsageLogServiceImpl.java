@@ -27,8 +27,8 @@ public class UsageLogServiceImpl implements UsageLogService {
     }
 
     @Override
-    public UsageLog updateUsageLog(Long usageLogId, UsageLog usageLogUpdate) {
-        return usageLogRepository.findById(usageLogId).map(log -> {
+    public UsageLog updateUsageLog(Long usageLogId, Long modelId, UsageLog usageLogUpdate) {
+        return usageLogRepository.findByIdAndModelId(usageLogId, modelId).map(log -> {
             log.setModel(usageLogUpdate.getModel());
             log.setModelGrade(usageLogUpdate.getModelGrade());
             log.setRoleName(usageLogUpdate.getRoleName());
@@ -38,9 +38,10 @@ public class UsageLogServiceImpl implements UsageLogService {
     }
 
     @Override
-    public UsageLog getUsageLogById(Long usageLogId) {
-        return usageLogRepository.findById(usageLogId).orElseThrow(
-            () -> new ResourceNotFoundException("Usage Log", usageLogId));
+    public UsageLog getUsageLogByIdAndModelId(Long usageLogId, Long modelId) {
+        return usageLogRepository.findByIdAndModelId(usageLogId, modelId)
+                .orElseThrow(() -> new ResourceNotFoundException("Usage Log not found with id: " +
+                        usageLogId + " and model id: " + modelId));
     }
 
     @Override
@@ -51,5 +52,5 @@ public class UsageLogServiceImpl implements UsageLogService {
     @Override
     public Page<UsageLog> getAll(Pageable pageable) {
         return usageLogRepository.findAll(pageable);
-    }
+    } //TODO: Ver paginación
 }
