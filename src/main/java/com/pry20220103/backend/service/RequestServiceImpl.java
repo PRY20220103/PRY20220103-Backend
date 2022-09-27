@@ -31,22 +31,25 @@ public class RequestServiceImpl implements RequestService{
         return userRepository.findById(userId).map(user -> {
             request.setUser(user);
             request.setStatus(Status.STATUS_REQUESTED);
+            request.setRequestedBy(user.getProfile().getName());
             return requestRepository.save(request);
         }).orElseThrow(() -> new ResourceNotFoundException("User", userId));
     }
 
     @Override
-    public Request updateRequest(Long userId, Long requestId, Request request) {
+    public Request acceptRequest(Long userId, Long requestId, Request request) {
 
 
         return requestRepository.findByIdAndUserId(requestId, userId).map(req -> {
-            req.setUser(request.getUser());
-            req.setGrade(request.getGrade());
-            req.setCourse(request.getCourse());
-            req.setRequestModelName(request.getRequestModelName());
-            req.setDescription(request.getDescription());
-            req.setRequestedBy(request.getRequestedBy());
-            req.setStatus(request.getStatus());
+            req.setStatus(Status.STATUS_ACCEPTED);
+            return requestRepository.save(req);
+        }).orElseThrow(() -> new ResourceNotFoundException("Request", requestId));
+    }
+
+    @Override
+    public Request denyRequest(Long userId, Long requestId, Request request) {
+            return requestRepository.findByIdAndUserId(requestId, userId).map(req -> {
+            req.setStatus(Status.STATUS_DENIED);
             return requestRepository.save(req);
         }).orElseThrow(() -> new ResourceNotFoundException("Request", requestId));
     }
@@ -75,6 +78,8 @@ public class RequestServiceImpl implements RequestService{
             return ResponseEntity.ok().build();
         }).orElseThrow(() -> new ResourceNotFoundException(" Course not found with Id " + requestId + " and UserId " + userId));
     }
+
+    
 
     
     

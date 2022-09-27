@@ -29,28 +29,36 @@ public class RequestController {
     private RequestService requestService;
 
 
-    @PostMapping("/api/v1/users/{userId}/request")
+    @PostMapping("/api/v1/users/{userId}/requests")
     public RequestResource createRequest(@PathVariable(name = "userId") Long userId,
                           @Valid @RequestBody SaveRequestResource resource){
         Request request = convertToEntity(resource);
         return convertToResource(requestService.createRequest(userId, request));
     }
 
-    @GetMapping("/api/v1/users/{userId}/request/{requestId}")
+    @GetMapping("/api/v1/users/{userId}/requests/{requestId}")
     public RequestResource getRequest(@PathVariable(name = "userId") Long userId,
                                         @PathVariable(name = "requestId") Long requestId){
         return convertToResource(requestService.getRequestByIdAndUserId(requestId,  userId));
     }
 
-    @PutMapping("/api/v1/users/{userId}/request/{requestId}")
-    public RequestResource updateRequest(@PathVariable(name = "userId") Long userId,
+    @PatchMapping("/api/v1/users/{userId}/requests/{requestId}/accept")
+    public RequestResource acceptRequest(@PathVariable(name = "userId") Long userId,
                                            @PathVariable(name = "requestId") Long requestId,
                                            @Valid @RequestBody SaveRequestResource resource){
         Request request = convertToEntity(resource);
-        return convertToResource(requestService.updateRequest(userId, requestId, request));
+        return convertToResource(requestService.acceptRequest(userId, requestId, request));
     }
 
-    @GetMapping("/api/v1/users/{userId}/request")
+    @PatchMapping("/api/v1/users/{userId}/requests/{requestId}/deny")
+    public RequestResource denyRequest(@PathVariable(name = "userId") Long userId,
+                                           @PathVariable(name = "requestId") Long requestId,
+                                           @Valid @RequestBody SaveRequestResource resource){
+        Request request = convertToEntity(resource);
+        return convertToResource(requestService.denyRequest(userId, requestId, request));
+    }
+
+    @GetMapping("/api/v1/users/{userId}/requests")
     public Page<RequestResource> getAllRequestsByUserId(@PathVariable(name = "userId") Long userId,
                                                            Pageable pageable){
         Page<Request> requestPage = requestService.getAllByUserId(userId, pageable);
@@ -59,7 +67,7 @@ public class RequestController {
         return new PageImpl<>(resources, pageable, resources.size());
     }
 
-    @GetMapping("/api/v1/request")
+    @GetMapping("/api/v1/requests")
     public Page<RequestResource> getAllRequests(Pageable pageable){
         Page<Request> requestPage = requestService.getAllRequest(pageable);
         List<RequestResource> resources = requestPage.getContent().stream()
@@ -67,7 +75,7 @@ public class RequestController {
         return new PageImpl<>(resources, pageable, resources.size());
     }
 
-    @DeleteMapping("/api/v1/users/{userId}/request/{requestId}")
+    @DeleteMapping("/api/v1/users/{userId}/requests/{requestId}")
     public ResponseEntity<?> deleteRequest(@PathVariable(name = "userId") Long userId, @PathVariable(name = "requestId") Long requestId) {
         return requestService.deleteRequest(userId, requestId);
     }

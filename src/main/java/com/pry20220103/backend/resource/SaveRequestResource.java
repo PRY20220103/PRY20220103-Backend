@@ -24,7 +24,5 @@ public class SaveRequestResource {
     @NotNull
     private String description;
 
-    @NotBlank
-    @NotNull
-    private String requestedBy;
+    
 }
