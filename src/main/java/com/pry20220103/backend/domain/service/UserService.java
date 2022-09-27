@@ -1,5 +1,6 @@
 package com.pry20220103.backend.domain.service;
 
+import com.pry20220103.backend.domain.model.entity.Profile;
 import com.pry20220103.backend.domain.model.entity.User;
 import com.pry20220103.backend.domain.service.communication.AuthenticateRequest;
 import com.pry20220103.backend.domain.service.communication.RegisterRequest;
@@ -15,5 +16,7 @@ public interface UserService extends UserDetailsService {
     ResponseEntity<?> register(RegisterRequest request);
 
     List<User> getAll();
+
+    User setUserProfile(Long userId, Profile profile);
 
 }
