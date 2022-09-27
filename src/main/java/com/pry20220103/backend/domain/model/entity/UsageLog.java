@@ -30,8 +30,6 @@ public class UsageLog {
     @NotNull
     private String modelGrade;
 
-    //private Course modelCourse;
-
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "usage_log_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
