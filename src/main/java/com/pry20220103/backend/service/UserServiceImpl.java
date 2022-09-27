@@ -1,5 +1,6 @@
 package com.pry20220103.backend.service;
 
+import com.pry20220103.backend.domain.model.entity.Profile;
 import com.pry20220103.backend.domain.model.entity.Role;
 import com.pry20220103.backend.domain.model.entity.User;
 import com.pry20220103.backend.domain.model.enumeration.Roles;
@@ -14,6 +15,7 @@ import com.pry20220103.backend.middleware.JwtHandler;
 import com.pry20220103.backend.middleware.UserDetailsImpl;
 import com.pry20220103.backend.resource.AuthenticateResource;
 import com.pry20220103.backend.resource.UserResource;
+import com.pry20220103.backend.shared.exception.ResourceNotFoundException;
 import com.pry20220103.backend.shared.mapping.EnhancedModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -150,5 +152,14 @@ public class UserServiceImpl implements UserService {
 
         return userRepository.findAll();
 
+    }
+
+    @Override
+    public User setUserProfile(Long userId, Profile profile) {
+        return userRepository.findById(userId).map(user -> {
+            user.setProfile(profile);
+            return userRepository.save(user);
+        }).orElseThrow(() ->
+                new ResourceNotFoundException("User not found with Id: ", userId));
     }
 }

@@ -9,7 +9,7 @@ public class RequestResource {
     private Long id;
     private String grade;
     private String course;
-    private String requestedModelName;
+    private String requestModelName;
     private String description;
     private String requestedBy;
     private Status status;

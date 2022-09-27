@@ -39,11 +39,11 @@ public class Request {
     String  requestedBy;
 
     @Enumerated(EnumType.STRING)
-    @Column(length = 20)
+    @Column(length = 50)
     private Status status;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "usage_log_id", nullable = false)
+    @JoinColumn(name = "request_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private User user;

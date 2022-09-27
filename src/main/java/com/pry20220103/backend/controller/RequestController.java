@@ -29,20 +29,20 @@ public class RequestController {
     private RequestService requestService;
 
 
-    @PostMapping("/api/user/{userId}/request")
-    public RequestResource createUsageLog(@PathVariable(name = "userId") Long userId,
+    @PostMapping("/api/v1/users/{userId}/request")
+    public RequestResource createRequest(@PathVariable(name = "userId") Long userId,
                           @Valid @RequestBody SaveRequestResource resource){
         Request request = convertToEntity(resource);
         return convertToResource(requestService.createRequest(userId, request));
     }
 
-    @GetMapping("/api/user/{userId}/request/{requestId}")
+    @GetMapping("/api/v1/users/{userId}/request/{requestId}")
     public RequestResource getRequest(@PathVariable(name = "userId") Long userId,
                                         @PathVariable(name = "requestId") Long requestId){
         return convertToResource(requestService.getRequestByIdAndUserId(requestId,  userId));
     }
 
-    @PutMapping("/api/user/{userId}/request/{requestId}")
+    @PutMapping("/api/v1/users/{userId}/request/{requestId}")
     public RequestResource updateRequest(@PathVariable(name = "userId") Long userId,
                                            @PathVariable(name = "requestId") Long requestId,
                                            @Valid @RequestBody SaveRequestResource resource){
@@ -50,7 +50,7 @@ public class RequestController {
         return convertToResource(requestService.updateRequest(userId, requestId, request));
     }
 
-    @GetMapping("/api/user/{userId}/request")
+    @GetMapping("/api/v1/users/{userId}/request")
     public Page<RequestResource> getAllRequestsByUserId(@PathVariable(name = "userId") Long userId,
                                                            Pageable pageable){
         Page<Request> requestPage = requestService.getAllByUserId(userId, pageable);
@@ -59,7 +59,7 @@ public class RequestController {
         return new PageImpl<>(resources, pageable, resources.size());
     }
 
-    @GetMapping("/api/request")
+    @GetMapping("/api/v1/request")
     public Page<RequestResource> getAllRequests(Pageable pageable){
         Page<Request> requestPage = requestService.getAllRequest(pageable);
         List<RequestResource> resources = requestPage.getContent().stream()
@@ -67,7 +67,7 @@ public class RequestController {
         return new PageImpl<>(resources, pageable, resources.size());
     }
 
-    @DeleteMapping("/api/user/{userId}/request/{requestId}")
+    @DeleteMapping("/api/v1/users/{userId}/request/{requestId}")
     public ResponseEntity<?> deleteRequest(@PathVariable(name = "userId") Long userId, @PathVariable(name = "requestId") Long requestId) {
         return requestService.deleteRequest(userId, requestId);
     }

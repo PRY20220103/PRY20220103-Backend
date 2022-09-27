@@ -1,5 +1,8 @@
 package com.pry20220103.backend.service;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -7,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.pry20220103.backend.domain.model.entity.Request;
+import com.pry20220103.backend.domain.model.enumeration.Status;
 import com.pry20220103.backend.domain.persistence.*;
 import com.pry20220103.backend.domain.service.RequestService;
 import com.pry20220103.backend.shared.exception.ResourceNotFoundException;
@@ -22,14 +26,19 @@ public class RequestServiceImpl implements RequestService{
 
     @Override
     public Request createRequest(Long userId, Request request) {
+
+      
         return userRepository.findById(userId).map(user -> {
             request.setUser(user);
+            request.setStatus(Status.STATUS_REQUESTED);
             return requestRepository.save(request);
         }).orElseThrow(() -> new ResourceNotFoundException("User", userId));
     }
 
     @Override
     public Request updateRequest(Long userId, Long requestId, Request request) {
+
+
         return requestRepository.findByIdAndUserId(requestId, userId).map(req -> {
             req.setUser(request.getUser());
             req.setGrade(request.getGrade());

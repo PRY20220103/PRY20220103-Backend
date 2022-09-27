@@ -4,6 +4,9 @@ import javax.validation.constraints.*;
 
 import com.pry20220103.backend.domain.model.enumeration.Status;
 
+import lombok.Data;
+
+@Data
 public class SaveRequestResource {
     @NotBlank
     @NotNull
@@ -15,7 +18,7 @@ public class SaveRequestResource {
 
     @NotBlank
     @NotNull
-    private String requestedModelName;
+    private String requestModelName;
 
     @NotBlank
     @NotNull
@@ -24,8 +27,4 @@ public class SaveRequestResource {
     @NotBlank
     @NotNull
     private String requestedBy;
-
-    @NotBlank
-    @NotNull
-    private Status status;
 }
