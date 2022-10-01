@@ -8,31 +8,16 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.util.Date;
 
 @Entity
-@Table(name = "usage_log")
+@Table(name = "categories")
 @Data
-public class UsageLog {
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
     @NotNull
-    @Size(max = 20)
-    private String roleName;
-
-    private Date viewedAt;
-
-    @NotBlank
-    @NotNull
-    private String modelGrade;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "usage_log_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
-    private Model model;
+    private String name;
 }
