@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @RestController
 @CrossOrigin
 @RequestMapping("/api/v1")
-@Tag(name = "modelos", description = "Endpoints para gestión de modelos 3D")
+@Tag(name = "Modelos", description = "Endpoints para gestión de modelos 3D")
 public class ModelsController {
     @Autowired
     private ModelMapper mapper;

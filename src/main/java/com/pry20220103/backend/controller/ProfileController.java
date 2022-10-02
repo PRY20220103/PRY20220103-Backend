@@ -25,7 +25,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @CrossOrigin
 @RestController
 @RequestMapping("/api/v1/users/{userId}")
-@Tag(name = "Profiles", description = "Endpoints para la gestión de perfiles de usuario")
+@Tag(name = "Perfiles", description = "Endpoints para la gestión de perfiles de usuario")
 public class ProfileController {
 
     @Autowired

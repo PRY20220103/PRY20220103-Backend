@@ -23,7 +23,7 @@ import com.pry20220103.backend.resource.*;
 
 @RestController
 @CrossOrigin
-@Tag(name = "solicitudes", description = "Endpoints para gestión de solicitudes de modelos 3D")
+@Tag(name = "Solicitudes", description = "Endpoints para gestión de solicitudes de modelos 3D")
 public class RequestController {
     @Autowired
     private ModelMapper mapper;
