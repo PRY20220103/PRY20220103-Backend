@@ -25,7 +25,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @CrossOrigin
 @RestController
 @RequestMapping("/api/v1/users/{userId}")
-@Tag(name = "Profiles", description = "User API")
+@Tag(name = "Profiles", description = "Endpoints para la gestión de perfiles de usuario")
 public class ProfileController {
 
     @Autowired
@@ -38,7 +38,7 @@ public class ProfileController {
     ModelMapper mapper;
 
 
-    @Operation(summary = "Create a profile by User Id", description = "Create profile from User by his Id", tags = {"profiles"})
+    @Operation(summary = "Crear perfil de usuario", description = "Crea un perfil dado el Id del usuario", tags = {"perfiles", "usuarios"})
     @PostMapping("/profile")
     public ProfileResource createProfile(@Valid @RequestBody SaveProfileResource resource,
                                          @PathVariable(name = "userId") Long id) {
@@ -48,20 +48,19 @@ public class ProfileController {
         // return convertToResource(profileService.createProfile(id, convertToEntity(resource)));
     }
 
-    @Operation(summary = "Get profile by User Id ", description = "Get a profile from User by his Id", tags = {"profiles"})
+    @Operation(summary = "Obtener un perfil", description = "Obtener el perfil de un usuario dado su Id", tags = {"perfiles", "usuarios"})
     @GetMapping("/profile")
     public ProfileResource getProfile(@PathVariable(name = "userId") Long userId) {
         return convertToResource(profileService.getProfileById(userId));
     }
 
-    @Operation(summary = "Update profile by User Id ", description = "Update a profile from User by his Id", tags = { "profiles" })
+    @Operation(summary = "Actualizar perfil", description = "Actualizar un perfil dado el id del usuario", tags = { "perfiles", "usuarios" })
     @PutMapping("/profile")
     public ProfileResource updateProfile(@PathVariable(name = "userId") Long userId,
                                          @Valid @RequestBody SaveProfileResource resource) {
         Profile profile = profileService.updateProfile(userId, convertToEntity(resource));
         return convertToResource(profileService.updateProfile(userId, profile));
     }
-    
 
     private Profile convertToEntity(SaveProfileResource resource){ return mapper.map(resource, Profile.class);}
     private ProfileResource convertToResource(Profile entity){return mapper.map(entity, ProfileResource.class); }
