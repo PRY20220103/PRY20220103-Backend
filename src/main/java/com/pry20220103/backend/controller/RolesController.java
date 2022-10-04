@@ -3,6 +3,7 @@ package com.pry20220103.backend.controller;
 import com.pry20220103.backend.domain.service.RoleService;
 import com.pry20220103.backend.mapping.RoleMapper;
 import com.pry20220103.backend.resource.RoleResource;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +26,8 @@ public class RolesController {
         this.mapper = mapper;
     }
 
+    @Operation(summary = "Obtener roles", description = "Obtiene todos los roles.",
+            tags = {"roles"})
     @GetMapping
     @PreAuthorize("hasRole('USER') or hasRole('INSTRUCTOR') or hasRole('ADMIN')")
     public ResponseEntity<?> getAllRoles(Pageable pageable) {
