@@ -14,7 +14,8 @@ public class ModelResource {
     private Boolean animated;
     private Integer viewCount;
     private Date createdAt;
-    String modelUrl;
+    private String modelUrl;
+    private String thumbnail;
     private List<String> questions;
     private List<String> answers;
 }

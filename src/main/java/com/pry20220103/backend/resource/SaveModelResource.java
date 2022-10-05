@@ -28,6 +28,8 @@ public class SaveModelResource {
 
     private String modelUrl;
 
+    private String thumbnail;
+
     private List<String> questions;
 
     private List<String> answers;

@@ -35,6 +35,8 @@ public class Model {
     @NotNull
     String color;
 
+    String thumbnail;
+
     Boolean animated;
 
     Integer viewCount;

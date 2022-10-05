@@ -59,6 +59,7 @@ public class ModelServiceImpl implements ModelService {
             model.setQuestions(modelRequest.getQuestions());
             model.setAnswers(modelRequest.getAnswers());
             model.setModelUrl(modelRequest.getModelUrl());
+            model.setThumbnail(modelRequest.getThumbnail());
             return modelRepository.save(model);
         }).orElseThrow(() -> new ResourceNotFoundException("Model", modelId));
     }
