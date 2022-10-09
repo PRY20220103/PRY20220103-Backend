@@ -47,12 +47,6 @@ public class Model {
     @NotNull
     String modelUrl;
 
-    @ElementCollection
-    List<String> questions;
-
-    @ElementCollection
-    List<String> answers;
-
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "model_id")
     @OnDelete(action = OnDeleteAction.CASCADE)

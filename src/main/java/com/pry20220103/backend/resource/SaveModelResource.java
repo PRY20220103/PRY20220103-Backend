@@ -30,7 +30,4 @@ public class SaveModelResource {
 
     private String thumbnail;
 
-    private List<String> questions;
-
-    private List<String> answers;
 }

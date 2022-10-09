@@ -56,8 +56,6 @@ public class ModelServiceImpl implements ModelService {
             model.setGrade(modelRequest.getGrade());
             model.setColor(modelRequest.getColor());
             model.setAnimated(modelRequest.getAnimated());
-            model.setQuestions(modelRequest.getQuestions());
-            model.setAnswers(modelRequest.getAnswers());
             model.setModelUrl(modelRequest.getModelUrl());
             model.setThumbnail(modelRequest.getThumbnail());
             return modelRepository.save(model);
