@@ -4,6 +4,7 @@ import com.pry20220103.backend.domain.service.RoleService;
 import com.pry20220103.backend.mapping.RoleMapper;
 import com.pry20220103.backend.resource.RoleResource;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/v1/roles")
+@Tag(name = "Roles", description = "Endpoints para gestión de roles de usuario")
 public class RolesController {
     private final RoleService roleService;
 

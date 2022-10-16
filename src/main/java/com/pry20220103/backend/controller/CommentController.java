@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,6 +23,7 @@ import com.pry20220103.backend.resource.SaveCommentResource;
 
 @RestController
 @CrossOrigin
+@Tag(name = "Comentarios", description = "Endpoints para gestión de comentarios")
 public class CommentController {
 
     @Autowired

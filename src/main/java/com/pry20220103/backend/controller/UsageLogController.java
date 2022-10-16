@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin
-@Tag(name = "logs", description = "Endpoints para gestión de registros de estadísticas de los modelos")
+@Tag(name = "Registros de estadísticas de uso", description = "Endpoints para gestión de registros de estadísticas de los modelos")
 public class UsageLogController {
     @Autowired
     private ModelMapper mapper;
