@@ -4,7 +4,7 @@ import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.List;
+import javax.validation.constraints.Size;
 
 @Data
 public class SaveModelResource {
@@ -14,6 +14,7 @@ public class SaveModelResource {
 
     @NotNull
     @NotBlank
+    @Size(max = 5000)
     private String modelDescription;
 
     @NotNull
