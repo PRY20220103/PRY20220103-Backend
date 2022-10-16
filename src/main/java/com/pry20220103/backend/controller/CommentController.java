@@ -34,7 +34,7 @@ public class CommentController {
     private CommentService commentService;
 
     @Operation(summary = "Crear comentario", description = "Permite crear un comentario dado el id del modelo " +
-            "correspondiente y el nombre de usuario del auto.", tags = {"comentarios", "modelos", "usuarios"})
+            "correspondiente y el nombre de usuario del autor.", tags = {"comentarios", "modelos", "usuarios"})
     @PostMapping("/api/v1/models/{modelId}/comments/{username}")
     public CommentResource createComment(@PathVariable(name = "modelId") Long modelId, @PathVariable(name = "username") String userName,
                           @Valid @RequestBody SaveCommentResource resource){
