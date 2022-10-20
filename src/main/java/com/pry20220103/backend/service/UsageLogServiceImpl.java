@@ -30,7 +30,6 @@ public class UsageLogServiceImpl implements UsageLogService {
     @Override
     public UsageLog updateUsageLog(Long modelId, Long usageLogId, UsageLog usageLogUpdate) {
         return usageLogRepository.findByIdAndModelId(usageLogId, modelId).map(log -> {
-            log.setModel(usageLogUpdate.getModel());
             Model model = usageLogUpdate.getModel();
             String grade = model.getGrade();
             log.setModelGrade(grade);
