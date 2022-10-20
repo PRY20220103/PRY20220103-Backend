@@ -13,4 +13,5 @@ public class UsageLogResource {
     private Boolean animated;
     private Integer viewCount;
     private Date createdAt;
+    private String roleName;
 }

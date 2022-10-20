@@ -27,7 +27,7 @@ public class UsageLogServiceImpl implements UsageLogService {
     }
 
     @Override
-    public UsageLog updateUsageLog(Long usageLogId, Long modelId, UsageLog usageLogUpdate) {
+    public UsageLog updateUsageLog(Long modelId, Long usageLogId, UsageLog usageLogUpdate) {
         return usageLogRepository.findByIdAndModelId(usageLogId, modelId).map(log -> {
             log.setModel(usageLogUpdate.getModel());
             log.setModelGrade(usageLogUpdate.getModelGrade());
