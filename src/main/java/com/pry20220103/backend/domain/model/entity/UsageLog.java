@@ -18,9 +18,7 @@ public class UsageLog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @NotBlank
-    @NotNull
+    
     @Size(max = 20)
     private String roleName;
 
