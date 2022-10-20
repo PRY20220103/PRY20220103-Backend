@@ -19,7 +19,7 @@ public class SaveUsageLogResource {
 
     @NotBlank
     @NotNull
-    private String grade;
+    private String modelGrade;
 
     private Boolean animated;
 
