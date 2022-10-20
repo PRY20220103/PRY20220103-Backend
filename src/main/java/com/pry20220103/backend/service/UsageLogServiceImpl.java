@@ -30,7 +30,7 @@ public class UsageLogServiceImpl implements UsageLogService {
     public UsageLog updateUsageLog(Long modelId, Long usageLogId, UsageLog usageLogUpdate) {
         return usageLogRepository.findByIdAndModelId(usageLogId, modelId).map(log -> {
             log.setModel(usageLogUpdate.getModel());
-            log.setModelGrade(usageLogUpdate.getModelGrade());
+            log.setModelGrade(usageLogUpdate.getModel().getGrade());
             log.setRoleName(usageLogUpdate.getRoleName());
             log.setViewedAt(usageLogUpdate.getViewedAt());
             return usageLogRepository.save(log);
