@@ -14,8 +14,4 @@ public class SaveUsageLogResource {
     private String roleName;
 
     private Date viewedAt;
-
-    @NotBlank
-    @NotNull
-    private String modelGrade;
 }

@@ -23,6 +23,7 @@ public class UsageLogServiceImpl implements UsageLogService {
     public UsageLog createUsageLog(Long modelId, UsageLog usageLog) {
         return modelRepository.findById(modelId).map(model -> {
             usageLog.setModel(model);
+            usageLog.setModelGrade(model.getGrade());
             return usageLogRepository.save(usageLog);
         }).orElseThrow(() -> new ResourceNotFoundException("Model", modelId));
     }
