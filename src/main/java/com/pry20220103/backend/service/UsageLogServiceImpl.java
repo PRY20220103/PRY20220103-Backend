@@ -1,5 +1,6 @@
 package com.pry20220103.backend.service;
 
+import com.pry20220103.backend.domain.model.entity.Model;
 import com.pry20220103.backend.domain.model.entity.UsageLog;
 import com.pry20220103.backend.domain.persistence.ModelRepository;
 import com.pry20220103.backend.domain.persistence.UsageLogRepository;
@@ -30,7 +31,9 @@ public class UsageLogServiceImpl implements UsageLogService {
     public UsageLog updateUsageLog(Long modelId, Long usageLogId, UsageLog usageLogUpdate) {
         return usageLogRepository.findByIdAndModelId(usageLogId, modelId).map(log -> {
             log.setModel(usageLogUpdate.getModel());
-            log.setModelGrade(usageLogUpdate.getModel().getGrade());
+            Model model = usageLogUpdate.getModel();
+            String grade = model.getGrade();
+            log.setModelGrade(grade);
             log.setRoleName(usageLogUpdate.getRoleName());
             log.setViewedAt(usageLogUpdate.getViewedAt());
             return usageLogRepository.save(log);
