@@ -9,5 +9,4 @@ public class UsageLogResource {
     private Long id;
     private String roleName;
     private Date viewedAt;
-    private String modelGrade;
 }

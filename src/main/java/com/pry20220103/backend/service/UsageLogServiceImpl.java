@@ -23,7 +23,6 @@ public class UsageLogServiceImpl implements UsageLogService {
     public UsageLog createUsageLog(Long modelId, UsageLog usageLog) {
         return modelRepository.findById(modelId).map(model -> {
             usageLog.setModel(model);
-            usageLog.setModelGrade(model.getGrade());
             return usageLogRepository.save(usageLog);
         }).orElseThrow(() -> new ResourceNotFoundException("Model", modelId));
     }
@@ -32,9 +31,6 @@ public class UsageLogServiceImpl implements UsageLogService {
     public UsageLog updateUsageLog(Long modelId, Long usageLogId, UsageLog usageLogUpdate) {
         return usageLogRepository.findByIdAndModelId(usageLogId, modelId).map(log -> {
             log.setModel(usageLogUpdate.getModel());
-            Model model = usageLogUpdate.getModel();
-            String grade = model.getGrade();
-            log.setModelGrade(grade);
             log.setRoleName(usageLogUpdate.getRoleName());
             log.setViewedAt(usageLogUpdate.getViewedAt());
             return usageLogRepository.save(log);
