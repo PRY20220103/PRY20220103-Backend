@@ -29,7 +29,6 @@ public class Comment {
     @NotNull
     String type;
 
-
     @NotBlank
     @NotNull
     String nameCommenter;
@@ -37,13 +36,9 @@ public class Comment {
     @NotNull
     Date postDate;
 
-
-
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "comment_id", nullable = false)
+    @JoinColumn(name = "model_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private Model model;
-    
-
 }

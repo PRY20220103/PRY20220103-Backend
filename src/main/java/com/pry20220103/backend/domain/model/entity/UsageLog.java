@@ -26,12 +26,10 @@ public class UsageLog {
 
     private Date viewedAt;
 
-    @NotBlank
-    @NotNull
-    private String modelGrade;
+    private String logName = this.model.getModelName();
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name = "usage_log_id", nullable = false)
+    @JoinColumn(name = "model_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private Model model;

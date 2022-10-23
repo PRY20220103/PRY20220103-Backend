@@ -28,7 +28,6 @@ public class Profile {
     @Size(max = 100)
     private String surname;
 
-  
     private String profileImage;
 
     @OneToOne
@@ -36,7 +35,4 @@ public class Profile {
     @JoinColumn(name = "user_id")
     @JsonIgnore
     private User user;
-
-
-    
 }
