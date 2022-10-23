@@ -49,6 +49,11 @@ public class ModelServiceImpl implements ModelService {
     }
 
     @Override
+    public Page<Model> getAll(Pageable pageable) {
+        return modelRepository.findAll(pageable);
+    }
+
+    @Override
     public Model updateModel(Long modelId, Model modelRequest) {
         return modelRepository.findById(modelId).map(model -> {
             model.setModelName(modelRequest.getModelName());

@@ -10,6 +10,7 @@ public interface ModelService {
     Model getByModelName(String name);
     Model getByIdAndCategoryId(Long modelId, Long categoryId);
     Page<Model> getAllByCategory(Long categoryId, Pageable pageable);
+    Page<Model> getAll(Pageable pageable);
     Model updateModel(Long modelId, Model model);
     ResponseEntity<?> deleteModel(Long modelId);
 }

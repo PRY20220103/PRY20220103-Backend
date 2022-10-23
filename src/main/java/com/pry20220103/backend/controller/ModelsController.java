@@ -63,6 +63,16 @@ public class ModelsController {
         return new PageImpl<>(resources, pageable, resources.size());
     }
 
+    @Operation(summary = "Obtener todos los modelos", description = "Retorna todos los modelos del " +
+            "sistema", tags = {"modelos"})
+    @GetMapping("/models")
+    public Page<ModelResource> getAll(Pageable pageable){
+        Page<Model> modelsPage = modelService.getAll(pageable);
+        List<ModelResource> resources = modelsPage.getContent().stream()
+                .map(this::convertToResource).collect(Collectors.toList());
+        return new PageImpl<>(resources, pageable, resources.size());
+    }
+
     @Operation(summary = "Actualizar modelo",  description = "Actualizar los datos del modelo especificado por su id",
             tags = {"modelos"})
     @PutMapping("/models/{modelId}")
@@ -77,7 +87,7 @@ public class ModelsController {
     public ResponseEntity<?> deleteModel(@PathVariable(name = "modelId") Long modelId){
         return modelService.deleteModel(modelId);
     }
-    //TODO: Documentar todas las entidades
+
     private Model convertToEntity(SaveModelResource resource){ return mapper.map(resource, Model.class); }
     private ModelResource convertToResource(Model entity){ return mapper.map(entity, ModelResource.class); }
 }
