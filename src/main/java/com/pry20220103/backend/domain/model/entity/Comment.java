@@ -1,50 +1,44 @@
 package com.pry20220103.backend.domain.model.entity;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.pry20220103.backend.domain.model.enumeration.Status;
+
+import java.util.Date;
 
 import javax.persistence.*;
+import javax.persistence.Table;
 import javax.validation.constraints.*;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Entity
-@Table(name = "request")
+@Table(name = "comments")
 @Data
-public class Request {
+public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
     @NotBlank
     @NotNull
-    String  grade;
+    String content;
 
     @NotBlank
     @NotNull
-    String  course;
+    String type;
 
     @NotBlank
     @NotNull
-    String  requestModelName;
+    String nameCommenter;
 
-    @NotBlank
     @NotNull
-    String  description;
-
-    @NotBlank
-    @NotNull
-    String  requestedBy;
-
-    @Enumerated(EnumType.STRING)
-    @Column(length = 50)
-    private Status status;
+    Date postDate;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "model_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
-    private User user;
+    private Model model;
 }

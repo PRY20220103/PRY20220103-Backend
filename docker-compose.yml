@@ -1,26 +1,7 @@
-#version: "3.8"
-#services:
-#  server:
-#    build: .
-#    restart: always
-#    ports:
-#      - 8081:8080
-#    depends_on:
-#      - mysqldb
-#  mysqldb:
-#    image: "mysql"
-#    restart: always
-#    ports:
-#      - 3306:3306
-#    environment:
-#      MYSQL_DATABASE: pry20220103
-#      MYSQL_USER: root
-#      MYSQL_PASSWORD: chelseafc11
-#      MYSQL_ROOT_PASSWORD: chelseafc11
 
 version: "3"
 services:
-  mysql-standalone:
+  mysql-standalone-image:
     image: "mysql:5.7"
     container_name: mysql-container
     environment:
@@ -29,11 +10,11 @@ services:
       MYSQL_DATABASE: bl4eo7igdj30wlaukfkb
     ports:
       - "3307:3306"
-  springboot-docker-container:
+  springboot-docker-image:
     image: springboot-docker-container
     container_name: springboot-container
     ports:
-      - "8080:8080"
+      - "80:8080"
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://uarncvbglma6d2wh:UpthGhcZeIwS213yog12@bl4eo7igdj30wlaukfkb-mysql.services.clever-cloud.com:20140/bl4eo7igdj30wlaukfkb
       SPRING_DATASOURCE_USERNAME: "uarncvbglma6d2wh"
@@ -42,4 +23,4 @@ services:
       context: "./"
       dockerfile: "Dockerfile"
     depends_on:
-      - mysql-standalone
+      - mysql-standalone-image

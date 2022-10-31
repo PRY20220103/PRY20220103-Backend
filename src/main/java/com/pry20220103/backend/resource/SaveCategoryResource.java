@@ -4,14 +4,10 @@ import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
 
 @Data
-public class SaveUsageLogResource {
-
+public class SaveCategoryResource {
     @NotBlank
     @NotNull
-    private String roleName;
-
-    private Date viewedAt;
+    private String name;
 }

@@ -1,10 +1,14 @@
 package com.pry20220103.backend.domain.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -21,15 +25,32 @@ public class Model {
 
     @NotBlank
     @NotNull
-    String  modelDescription;
+    @Size(max = 5000)
+    String modelDescription;
 
     @NotBlank
     @NotNull
     String grade;
+
+    @NotBlank
+    @NotNull
+    String color;
+
+    String thumbnail;
 
     Boolean animated;
 
     Integer viewCount;
 
     Date createdAt;
+
+    @NotBlank
+    @NotNull
+    String modelUrl;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "category_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private Category category;
 }
