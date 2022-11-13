@@ -26,7 +26,7 @@ public class UsageLog {
 
     private Date viewedAt;
 
-    private String logName = this.model.getModelName();
+    private String logName;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "model_id", nullable = false)
