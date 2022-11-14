@@ -10,7 +10,7 @@ services:
     ports:
       - "3307:3306"
   springboot-docker-image:
-    image: springboot-docker-container
+    image: springboot-docker-image
     container_name: springboot-container
     ports:
       - "80:8080"
